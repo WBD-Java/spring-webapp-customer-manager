@@ -25,6 +25,7 @@ public class CustomerController {
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
+
     @GetMapping("/create-customer")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/customer/create");
@@ -52,5 +53,15 @@ public class CustomerController {
             ModelAndView modelAndView = new ModelAndView("/customer/error.404");
             return modelAndView;
         }
+    }
+
+    @PostMapping("/edit-customer")
+    public ModelAndView updateCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.save(customer);
+
+        ModelAndView modelAndView = new ModelAndView("/customer/edit");
+        modelAndView.addObject("customer", customer);
+        modelAndView.addObject("messages", "Customer updated successfully");
+        return modelAndView;
     }
 }
