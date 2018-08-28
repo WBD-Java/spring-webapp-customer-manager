@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Province</title>
+    <style>
+        body {
+            width: 500px;
+            margin: auto;
+        }
+
+        .message {
+            color: greenyellow;
+        }
+
+        input{
+            margin: 5px auto;
+            padding: 10px 20px 10px 20px;
+            border: 1px solid #ccc;
+            color: black;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Province</h1>
+<p><a href="/provinces">Back to Province list</a></p>
+<th:block th:if="${message}">
+    <p class="message" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/province/edit}" th:object="${province}" method="post">
+    <input type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <th>Name: </th>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update Province"/></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
