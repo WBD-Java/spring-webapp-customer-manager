@@ -1,6 +1,8 @@
 package com.codegym.controller;
 
+import com.codegym.model.Customer;
 import com.codegym.model.Province;
+import com.codegym.service.CustomerService;
 import com.codegym.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProvinceController {
     @Autowired
     private ProvinceService provinceService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("/provinces")
     public ModelAndView listProvinces() {
@@ -86,5 +90,20 @@ public class ProvinceController {
         provinceService.remove(province.getId());
 
         return "redirect: /provinces";
+    }
+
+    @GetMapping("/province/view/{id}")
+    public ModelAndView viewProvince(@PathVariable("id") Long id) {
+        Province province = provinceService.findById(id);
+
+        if (province == null) {
+            return new ModelAndView("/error.404");
+        }
+
+        Iterable<Customer> customers = customerService.findAllByProvince(province);
+        ModelAndView modelAndView = new ModelAndView("/province/view");
+        modelAndView.addObject("province", province);
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
     }
 }
