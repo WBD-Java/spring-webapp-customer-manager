@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProvinceController {
@@ -45,9 +46,15 @@ public class ProvinceController {
     public ModelAndView showEditForm(@PathVariable Long id) {
         Province province = provinceService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/province/edit");
-        modelAndView.addObject("province", province);
-        return modelAndView;
+        if (province == null) {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/province/edit");
+            modelAndView.addObject("province", province);
+            return modelAndView;
+        }
+
     }
 
     @PostMapping("/province/edit")
@@ -58,5 +65,26 @@ public class ProvinceController {
         modelAndView.addObject("province", province);
         modelAndView.addObject("message", "Province update successfully!");
         return modelAndView;
+    }
+
+    @GetMapping("/province/delete/{id}")
+    public ModelAndView showDeleteForm(@PathVariable Long id) {
+        Province province = provinceService.findById(id);
+
+        if (province == null) {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/province/delete");
+            modelAndView.addObject("province", province);
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/province/delete")
+    public String deleteProvince(@ModelAttribute("province") Province province ) {
+        provinceService.remove(province.getId());
+
+        return "redirect: /provinces";
     }
 }
