@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Provinces</title>
-    <style>
-        body {
-            width: 400px;
-            margin: 10px auto;
-        }
-
-        table, th, td{
-            border: 1px solid black;
-            border-collapse: collapse;
-            margin: 10px auto;
-        }
-    </style>
+    <head th:replace="layout::head"></head>
 </head>
 <body>
 <h1>Provinces</h1>
@@ -34,5 +23,6 @@
         </tr>
     </th:block>
 </table>
+<footer th:replace="layout::footer"></footer>
 </body>
 </html>

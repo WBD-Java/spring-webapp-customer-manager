@@ -3,19 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete Province</title>
-    <style>
-        body{
-            width: 500px;
-            margin: auto;
-        }
-
-        input{
-            padding: 10px 20px 10px 20px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            color: black;
-        }
-    </style>
+    <head th:replace="layout::head"></head>
 </head>
 <body>
 <h1>Delete Province</h1>
@@ -34,5 +22,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout::footer"></footer>
 </body>
 </html>

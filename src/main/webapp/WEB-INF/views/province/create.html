@@ -3,23 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Province</title>
-    <style>
-        body{
-            width: 500px;
-            margin: auto;
-        }
-        .message{
-            color: greenyellow;
-        }
-
-        input{
-            margin: 5px auto;
-            padding: 10px 20px 10px 20px;
-            border: 1px solid #ccc;
-            color: black;
-            border-radius: 1px;
-        }
-    </style>
+    <head th:replace="layout::head"></head>
 </head>
 <body>
 <h1>Create province</h1>
@@ -43,5 +27,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout::footer"></footer>
 </body>
 </html>
