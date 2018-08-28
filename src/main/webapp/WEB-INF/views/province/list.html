@@ -28,7 +28,7 @@
   </tr>
     <th:block th:each="province : ${provinces}">
         <tr>
-            <td th:text="${province.name}"></td>
+            <td ><a th:href="@{/province/view/__${province.id}__}"th:text="${province.name}"></a></td>
             <td><a th:href="@{/province/edit/__${province.id}__}">edit</a></td>
             <td><a th:href="@{/province/delete/__${province.id}__}">delete</a></td>
         </tr>
