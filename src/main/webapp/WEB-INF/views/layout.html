@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            width: 700px;
+            margin: auto;
+        }
+        .message{
+            color: greenyellow;
+        }
+        .page{
+            text-align: center;
+            margin: 5px auto;
+        }
+
+        table{
+            width: 100%;
+        }
+
+        table, th, td{
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        input{
+            margin: 5px auto;
+            padding: 10px 20px 10px 20px;
+            border: 1px solid #ccc;
+            color: black;
+            border-radius: 1px;
+        }
+
+        footer{
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<footer th:fragment="footer">
+    &copy; 2018 CodeGym
+</footer>
+</body>
+</html>
