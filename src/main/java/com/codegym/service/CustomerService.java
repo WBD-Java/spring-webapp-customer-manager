@@ -1,9 +1,12 @@
 package com.codegym.service;
 
 import com.codegym.model.Customer;
+import com.codegym.model.Province;
 
 public interface CustomerService {
     Iterable<Customer> findAll();
+
+    Iterable<Customer> findAllByProvince(Province province);
 
     Customer findById(Long id);
 
