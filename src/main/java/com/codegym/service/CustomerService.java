@@ -10,6 +10,8 @@ public interface CustomerService {
 
     Iterable<Customer> findAllByProvince(Province province);
 
+    Page<Customer> findAllByFirstNameContaining(String firstName, Pageable pageable);
+
     Customer findById(Long id);
 
     void save(Customer customer);
